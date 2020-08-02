@@ -1,5 +1,8 @@
 const Request = require('./utils/Request');
 const parser = require('./utils/HTMLParser');
+const render = require('./utils/Image');
+const images = require('images');
+
 void async function(){
   let request = new Request({
     method:'POST',
@@ -15,5 +18,8 @@ void async function(){
   });
   let res = await request.send();
   let dom = parser.parseHTML(res.body);
-  console.log(dom)
+  let viewpoint = images(800, 600);
+  render(viewpoint, dom);
+  viewpoint.save('test.jpg');
+  console.log(JSON.stringify(dom, null , '   '))
 }();
