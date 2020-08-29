@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .light{
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: gray;
+    }
+  </style>
+</head>
+<body>
+  <div class='light'></div>
+  <script>
+    let light = document.getElementsByClassName('light')[0];
+  
+    function toggle(color){
+      light.style.background = color;
+    }
+  
+    function sleep(duration){
+      return new Promise((resolve,reject)=>{
+        setTimeout(resolve, duration);
+      })
+    }
+    function go(){
+      toggle('green');
+      sleep(10000).then(()=>{
+        toggle('yellow');
+        return  sleep(2000)
+      }).then(()=>{
+        toggle('red');
+        return sleep(5000)
+      }).then(go);
+    }
+    go();
+  </script>
+</body>
+</html>
