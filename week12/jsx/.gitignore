@@ -89,4 +89,4 @@ typings/
 Untitled
 output/
 .nyc_output/
-dist/
+# dist/
